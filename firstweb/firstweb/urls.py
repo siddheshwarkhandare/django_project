@@ -24,7 +24,7 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('web/', include('web.urls')),
-    path('/', view=home,name="index.html"),
+    path('', views.home,name='base'),
 
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
