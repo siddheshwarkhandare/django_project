@@ -21,3 +21,10 @@ def web_created(request):
     else:
         form =WebForm()
     return render(request, 'web_from.html',{'from':form})
+
+def web_edit(request):
+    web=None
+    if :
+        pass
+    else:
+        form= WebForm(instance= web)
