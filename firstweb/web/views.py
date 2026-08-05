@@ -28,3 +28,4 @@ def web_edit(request):
         pass
     else:
         form= WebForm(instance= web)
+    return render(request,'web_form.html', {'form':form})
