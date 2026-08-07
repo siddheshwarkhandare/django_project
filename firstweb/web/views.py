@@ -22,18 +22,30 @@ def web_created(request):
         form = WebForm(request.POST,request.FILES) # importing from from the model file 
                                                     #django creat an form by self and we can use that form 
         if form.is_valid():# if the data is valid than we can save that form in db
-            web=form.save(commit= False)
-            web.user()= request.user()
-            web.save()
-            return redirect('web_list')
+            web=form.save(commit= False)#just saving the form not saving it
+            web.user()= request.user() #geting the user form request 
+            web.save()#saving the form 
+            return redirect('web_list')#all the if satement is post
     else:
         form =WebForm()
-    return render(request, 'web_from.html',{'from':form})
+    return render(request, 'web_form.html',{'from':form}) #we will seeing the form because of this
 
-def web_edit(request):
-    web= get_object_or_404()
-    if :
-        pass
+def web_edit(request,web_id):
+    web= get_object_or_404(Web,pk=web_id,user=request.user)
+    if request.method == 'POST':
+        form = WebForm(request.POST,request.FILES,instance=web)
+        if form.is_valid():
+            web.user.save(commit=False)
+            web.user() = request.user()
+            web.save
+            return redirect('web_list')
     else:
-        form= WebForm(instance= web)
+        form= WebForm(instance= web)# keeping the data prefill
     return render(request,'web_form.html', {'form':form})
+
+def web_delete(request, web_id):
+    web=get_object_or_404(Web,pk=web_id, user=request.user)
+    if request.method == 'POST':
+        web.delete()
+        return redirect('web_list')
+    return render(request,'web_conf_delete.html', {'web':web})
