@@ -1,11 +1,19 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block title %}
- webpage
-{% endblock title %}
+  webpage
+{% endblock %}
 
-
-{% block content %} 
- <h1 class = "text-center mt-4">welocme to webpage</h1>
-{% endblock content %} 
-
+{% block content %}
+  <h1 class="text-center mt-4">welocme to webpage</h1>
+  <h2>
+    {% if form.instance.pk %}
+      Edit Web
+    {% else %}
+      Create Web
+    {% endif %}
+    <form method='post' enctype="multipart/form-data" class='form'>
+        {{form.as_p}}
+    </form>
+  </h2>
+{% endblock %}
