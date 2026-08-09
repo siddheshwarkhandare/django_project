@@ -6,6 +6,14 @@
 
 
 {% block content %} 
- <h1 class = "text-center mt-4">welocme to webpage</h1>
+ <h1 class = "text-center mt-4">Are you sure that you want to delet this form</h1>
+
+ <form method='post'>
+    {% csrf_token %}
+    <button class="btn btn-danger"> Delete</button>
+    <a calss= "btn btn-success" href="{% url 'web_list' %}">Cancal</a>
+
+ </form>
+
 {% endblock content %} 
 
