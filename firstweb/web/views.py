@@ -3,6 +3,7 @@ from .models import Web
 from .forms import WebForm,UserRagistrationform
 from django.shortcuts import get_object_or_404,redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login
 
 """
 in views we define the fuctionality of forms we creat each function for the for form 
@@ -53,6 +54,16 @@ def web_delete(request, web_id):
     return render(request,'web_conf_delete.html', {'web':web})
 
 def regitration(request):
+    if request.method == 'POST':
+        form=UserRagistrationform(request.POST)
+        if form.is_valid():
+            user=form.save(commit=False)
+            user.set_password(form.cleaned_data['password1'])
+            user.save()
+            login(request,user)
+            return redirect('web_list')
+    else:
+        form=UserRagistrationform()
+
     return render(request, 'registration/ragister.html',{'form':form})
 
-from .forms import WebForm,Userloginform
