@@ -10,5 +10,4 @@ urlpatterns = [
     path('register/', views.regitration, name='register'),
 
 
-
 ]
