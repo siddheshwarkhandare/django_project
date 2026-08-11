@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  webpage
+{% endblock %}
+
+{% block content %}
+  <h1 class="text-center mt-4">welocme to webpage</h1>
+  <div class="mb-5">
+    <a class="btn btn-primary" href="{% url 'web_created' %}">Created a web</a>
+  </div>
+
+  <div class="container row gap-3">
+    {% for web in webs %}
+      <div class="card" style="width: 18rem;">
+        {% if web.photo %}
+          <img src="{{ web.photo.url }}" />
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{ web.user.username }}</h5>
+          <p class="card-text">{{ web.text }}</p>
+          {% if web.user == user %}
+            <a href="{% url 'web_edit' web.id %}" class="btn btn-primary">Edit</a>
+            <a href="{% url 'web_delete' web.id %}" class="btn btn-primary">Delete</a>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

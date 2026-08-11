@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  webpage
+{% endblock %}
+
+{% block content %}
+  <h1 class="text-center mt-4">welocme to webpage</h1>
+  <h2>
+    {% if form.instance.pk %}
+      Edit Web
+    {% else %}
+      Create Web
+    {% endif %}
+    <form method='post' enctype="multipart/form-data" class='form'>
+        {% csrf_token %}
+        {{form.as_p}}
+        <button class="btn btn-warning" type="submit">Submit</button>
+    </form>
+    <a href="{% url 'web_list'%}"> Back web list</a>
+  </h2>
+{% endblock %}
