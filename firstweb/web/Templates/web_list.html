@@ -19,8 +19,11 @@
         <div class="card-body">
           <h5 class="card-title">{{ web.user.username}}</h5>
           <p class="card-text">{{web.text}}</p>
+          {% if web.user == user %}
+            
           <a href="{%url 'web_edit' web.id%}" class="btn btn-primary">Edit</a>
           <a href="{%url 'web_delete' web.id%}" class="btn btn-primary ">Delete</a>
+          {% endif %}
         </div>
       </div>
     {% endfor %}
