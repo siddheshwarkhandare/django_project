@@ -38,7 +38,7 @@ def web_edit(request,web_id):
     if request.method == 'POST':
         form = WebForm(request.POST,request.FILES,instance=web)
         if form.is_valid():
-            web.user.save(commit=False)
+            web=form.save(commit=False)
             web.user = request.user
             web.save()
             return redirect('web_list')
