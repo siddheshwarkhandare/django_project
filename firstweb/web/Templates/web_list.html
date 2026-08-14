@@ -12,10 +12,8 @@
   <h1 class="text-center mt-4">Welcome to webpage</h1>
 
   <div class="mb-5 text-center">
-    <a class="uiverse-btn" href="{% url 'web_created' %}">
-        Create a web
-    </a>
-</div>
+    <a class="uiverse-btn" href="{% url 'web_created' %}">Create a web</a>
+  </div>
 
   <div class="container d-flex flex-wrap gap-4 justify-content-center">
     {% for web in webs %}
@@ -36,7 +34,7 @@
 
           <div class="web-card__text">
             <p class="web-card__title">{{ web.user.username }}</p>
-
+            <p class="text-muted" style="font-size: 12px;">Created: {{ web.created|date:'d-m-Y H:i' }}</p>
             <p class="web-card__description">{{ web.text }}</p>
           </div>
 
