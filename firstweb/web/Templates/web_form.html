@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Create Web
+{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/create.css' %}">
+
+<div class="create-page">
+
+  <div class="create-container">
+
+    <!-- Header -->
+    <div class="create-header">
+      <div class="create-icon">
+        +
+      </div>
+
+      <h1>Create Your Web</h1>
+
+      <p>
+        Share something with the community
+      </p>
+    </div>
+
+
+    <!-- Form Card -->
+    <div class="create-card">
+
+      <form method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        <!-- Text -->
+        <div class="form-group">
+
+          <label for="{{ form.text.id_for_label }}">
+            What do you want to share?
+          </label>
+
+          {{ form.text }}
+
+          {% if form.text.errors %}
+            <div class="form-error">
+              {{ form.text.errors }}
+            </div>
+          {% endif %}
+
+        </div>
+
+
+        <!-- Photo -->
+        <div class="form-group">
+
+          <label>
+            Add a photo
+          </label>
+
+          <label for="{{ form.photo.id_for_label }}" class="upload-area">
+
+            <div class="upload-icon">
+              📷
+            </div>
+
+            <div class="upload-title">
+              Choose an image
+            </div>
+
+            <div class="upload-description">
+              PNG, JPG or JPEG
+            </div>
+
+            <div class="upload-file-name" id="file-name">
+              No file selected
+            </div>
+
+          </label>
+
+          {{ form.photo }}
+
+          {% if form.photo.errors %}
+            <div class="form-error">
+              {{ form.photo.errors }}
+            </div>
+          {% endif %}
+
+        </div>
+
+
+        <!-- Preview -->
+        <div class="preview-container" id="preview-container">
+
+          <p class="preview-label">
+            Image Preview
+          </p>
+
+          <img
+            id="image-preview"
+            src="#"
+            alt="Image preview"
+          >
+
+        </div>
+
+
+        <!-- Buttons -->
+        <div class="form-actions">
+
+          <a
+            href="{% url 'web_created' %}"
+            class="cancel-btn"
+          >
+            Cancel
+          </a>
+
+          <button
+            type="submit"
+            class="create-btn"
+          >
+            Create Web
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+  const fileInput = document.getElementById("{{ form.photo.id_for_label }}");
+  const previewContainer = document.getElementById("preview-container");
+  const previewImage = document.getElementById("image-preview");
+  const fileName = document.getElementById("file-name");
+
+  fileInput.addEventListener("change", function () {
+
+    const file = this.files[0];
+
+    if (file) {
+
+      fileName.textContent = file.name;
+
+      const reader = new FileReader();
+
+      reader.onload = function (event) {
+        previewImage.src = event.target.result;
+        previewContainer.classList.add("show");
+      };
+
+      reader.readAsDataURL(file);
+
+    } else {
+
+      fileName.textContent = "No file selected";
+      previewContainer.classList.remove("show");
+
+    }
+
+  });
+</script>
+
+{% endblock %}
