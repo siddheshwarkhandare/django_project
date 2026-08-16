@@ -5,94 +5,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+    <link href="{% static 'css/base.css' %}" rel="stylesheet" />
 
-    <style>
-      .menu {
-        padding: 0.5rem;
-        background-color: #fff;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        border-radius: 15px;
-        box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.075);
-        margin: 12px auto;
-        width: fit-content;
-      }
-      
-      .link {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        width: 70px;
-        height: 50px;
-        border-radius: 8px;
-        position: relative;
-        z-index: 1;
-        overflow: hidden;
-        transform-origin: center left;
-        transition: width 0.2s ease-in;
-        text-decoration: none;
-        color: inherit;
-      }
-      
-      .link:before {
-        position: absolute;
-        z-index: -1;
-        content: '';
-        display: block;
-        border-radius: 8px;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        transform: translateX(100%);
-        transition: transform 0.2s ease-in;
-        transform-origin: center right;
-        background-color: #ffddb0;
-      }
-      
-      .link:hover,
-      .link:focus {
-        outline: 0;
-        width: 130px;
-      }
-      
-      .link:hover:before,
-      .link:focus:before {
-        transform: translateX(0);
-      }
-      
-      .link:hover .link-title,
-      .link:focus .link-title {
-        transform: translateX(0);
-        opacity: 1;
-      }
-      
-      .link-icon {
-        width: 28px;
-        height: 28px;
-        display: block;
-        flex-shrink: 0;
-        left: 18px;
-        position: absolute;
-        color: #4a3f35;
-      }
-      
-      .link-icon svg {
-        width: 28px;
-        height: 28px;
-      }
-      
-      .link-title {
-        transform: translateX(100%);
-        transition: transform 0.2s ease-in;
-        transform-origin: center right;
-        display: block;
-        text-align: center;
-        text-indent: 28px;
-        width: 100%;
-        color: #4a3f35;
-      }
-    </style>
+    <script src="{% static 'js/theme-init.js' %}"></script>
 
     <title>
       {% block title %}
@@ -152,6 +67,25 @@
           <span class="link-title">Login</span>
         </a>
       {% endif %}
+
+      <button type="button" class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg id="themeIconMoon" xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="currentColor" viewBox="0 0 256 256">
+          <rect width="256" height="256" fill="none"></rect>
+          <path d="M216.7,152.6A91.9,91.9,0,0,1,103.4,39.3a92,92,0,1,0,113.3,113.3Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
+        </svg>
+        <svg id="themeIconSun" xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="currentColor" viewBox="0 0 256 256" style="display:none;">
+          <rect width="256" height="256" fill="none"></rect>
+          <circle cx="128" cy="128" r="56" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle>
+          <line x1="128" y1="40" x2="128" y2="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+          <line x1="66.3" y1="66.3" x2="55" y2="55" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+          <line x1="40" y1="128" x2="24" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+          <line x1="66.3" y1="189.7" x2="55" y2="201" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+          <line x1="128" y1="216" x2="128" y2="232" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+          <line x1="189.7" y1="189.7" x2="201" y2="201" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+          <line x1="216" y1="128" x2="232" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+          <line x1="189.7" y1="66.3" x2="201" y2="55" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+        </svg>
+      </button>
     </nav>
 
     <div class="container">
@@ -159,5 +93,8 @@
         content here
       {% endblock %}
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/theme-toggle.js' %}"></script>
   </body>
 </html>

@@ -1,0 +1,138 @@
+:root {
+  --page-bg: #ffffff;
+  --page-text: #212529;
+  --menu-bg: #fff;
+  --menu-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.075);
+  --icon-color: #4a3f35;
+  --hover-bg: #ffddb0;
+}
+
+[data-bs-theme="dark"] {
+  --page-bg: #15202b;
+  --page-text: #e7e9ea;
+  --menu-bg: #1e2732;
+  --menu-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.4);
+  --icon-color: #e7e9ea;
+  --hover-bg: #a9702f;
+}
+
+body {
+  background-color: var(--page-bg);
+  color: var(--page-text);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.menu {
+  padding: 0.5rem;
+  background-color: var(--menu-bg);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  box-shadow: var(--menu-shadow);
+  margin: 12px auto;
+  width: fit-content;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.link {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 50px;
+  border-radius: 8px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  transform-origin: center left;
+  transition: width 0.2s ease-in;
+  text-decoration: none;
+  color: inherit;
+}
+
+.link:before {
+  position: absolute;
+  z-index: -1;
+  content: '';
+  display: block;
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  transform: translateX(100%);
+  transition: transform 0.2s ease-in;
+  transform-origin: center right;
+  background-color: var(--hover-bg);
+}
+
+.link:hover,
+.link:focus {
+  outline: 0;
+  width: 130px;
+}
+
+.link:hover:before,
+.link:focus:before {
+  transform: translateX(0);
+}
+
+.link:hover .link-title,
+.link:focus .link-title {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.link-icon {
+  width: 28px;
+  height: 28px;
+  display: block;
+  flex-shrink: 0;
+  left: 18px;
+  position: absolute;
+  color: var(--icon-color);
+}
+
+.link-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.link-title {
+  transform: translateX(100%);
+  transition: transform 0.2s ease-in;
+  transform-origin: center right;
+  display: block;
+  text-align: center;
+  text-indent: 28px;
+  width: 100%;
+  color: var(--icon-color);
+}
+
+/* Dark mode toggle button, styled as a plain button (not a .link pill) */
+.theme-toggle-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: var(--icon-color);
+  cursor: pointer;
+  margin-left: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.theme-toggle-btn:hover,
+.theme-toggle-btn:focus {
+  outline: 0;
+  background-color: var(--hover-bg);
+}
+
+.theme-toggle-btn svg {
+  width: 24px;
+  height: 24px;
+}
