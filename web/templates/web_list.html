@@ -1,28 +1,50 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
   webpage
 {% endblock %}
 
 {% block content %}
-  <h1 class="text-center mt-4">welocme to webpage</h1>
-  <div class="mb-5">
-    <a class="btn btn-primary" href="{% url 'web_created' %}">Created a web</a>
+  <link rel="stylesheet" href="{% static 'css/card.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/button.css' %}" />
+
+  <h1 class="text-center mt-4">Welcome to webpage</h1>
+
+  <div class="mb-5 text-center">
+    <a class="uiverse-btn" href="{% url 'web_created' %}">Create a web</a>
   </div>
 
-  <div class="container row gap-3">
+  <div class="container d-flex flex-wrap gap-4 justify-content-center">
     {% for web in webs %}
-      <div class="card" style="width: 18rem;">
-        {% if web.photo %}
-          <img src="{{ web.photo.url }}" />
-        {% endif %}
-        <div class="card-body">
-          <h5 class="card-title">{{ web.user.username }}</h5>
-          <p class="card-text">{{ web.text }}</p>
-          {% if web.user == user %}
-            <a href="{% url 'web_edit' web.id %}" class="btn btn-primary">Edit</a>
-            <a href="{% url 'web_delete' web.id %}" class="btn btn-primary">Delete</a>
+      <div class="web-card">
+        <div class="web-card__shine"></div>
+        <div class="web-card__glow"></div>
+
+        <div class="web-card__content">
+          <div class="web-card__badge">NEW</div>
+
+          {% if web.photo %}
+            <div class="web-card__image">
+              <img src="{{ web.photo.url }}" alt="{{ web.user.username }}" />
+            </div>
+          {% else %}
+            <div class="web-card__image"></div>
           {% endif %}
+
+          <div class="web-card__text">
+            <p class="web-card__title">{{ web.user.username }}</p>
+            <p class="text-muted" style="font-size: 12px;">Created: {{ web.created|date:'d-m-Y H:i' }}</p>
+            <p class="web-card__description">{{ web.text }}</p>
+          </div>
+
+          <div class="web-card__footer">
+            {% if user.is_authenticated and web.user == user %}
+              <a href="{% url 'web_edit' web.id %}" class="web-action-btn">Edit</a>
+
+              <a href="{% url 'web_delete' web.id %}" class="web-action-btn delete-btn">Delete</a>
+            {% endif %}
+          </div>
         </div>
       </div>
     {% endfor %}

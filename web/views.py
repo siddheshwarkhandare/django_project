@@ -4,7 +4,7 @@ from .forms import WebForm,UserRagistrationform
 from django.shortcuts import get_object_or_404,redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
-
+from django.utils import timezone
 """
 in views we define the fuctionality of forms we creat each function for the for form 
 after this we are loading this views in to the jija template
@@ -66,4 +66,9 @@ def regitration(request):
         form=UserRagistrationform()
 
     return render(request, 'registration/ragister.html',{'form':form})
+
+def date_time(request):
+    time=timezone.now()
+    return render(request, 'web_list.html',{'time':time})
+
 
