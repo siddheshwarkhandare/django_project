@@ -1,38 +1,104 @@
-# Python
+# ==========================================
+# Byte-compiled / optimized / DLL files
+# ==========================================
 __pycache__/
 *.py[cod]
 *$py.class
+*.so
 
-# Virtual environment
-venv/
+# ==========================================
+# Virtual Environments (DO NOT TRACK)
+# ==========================================
 .venv/
-env/
+venv/
 ENV/
-
-# Environment variables / secrets
+env/
+__pypackages__/
 .env
+.venv
+
+# ==========================================
+# Sensitive Configuration / Secrets
+# ==========================================
+.env
+*.env
 .env.*
+secrets.toml
+instance/
 
-# Django
-*.log
-db.sqlite3
-db.sqlite3-journal
-staticfiles/
+# ==========================================
+# Distribution / Packaging / Builds
+# ==========================================
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
 
-# IDEs
-.vscode/
+# ==========================================
+# Testing / Coverage Reports
+# ==========================================
+htmlcov/
+.tox/
+.nosexml/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# ==========================================
+# IDEs and Text Editors
+# ==========================================
+# JetBrains / PyCharm
 .idea/
 
-# OS
+# VS Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# Text Editor backups
+*.swp
+*.swo
+*~
 .DS_Store
-Thumbs.db
 
-# Testing / tooling
-.pytest_cache/
+# ==========================================
+# Linters, Type Checkers, and Caches
+# ==========================================
 .mypy_cache/
+.dmypy.json
+dmypy.json
 .ruff_cache/
-.coverage
-htmlcov/
+.black
+.pytest_cache/
+.eslintcache
 
-# Media photos
-media/photos/
+# ==========================================
+# Databases and Logs
+# ==========================================
+*.log
+*.sqlite3
